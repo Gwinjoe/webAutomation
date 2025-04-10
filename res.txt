@@ -1,0 +1,19 @@
+#j_balance found
+NGN 0
+TimeoutError: Timed out after waiting 100000ms
+    at /home/gwin/projects/webAutomation/node_modules/puppeteer-core/lib/cjs/puppeteer/common/util.js:258:19
+    at /home/gwin/projects/webAutomation/node_modules/puppeteer-core/lib/cjs/third_party/rxjs/rxjs.js:3991:35
+    at OperatorSubscriber2._this._next (/home/gwin/projects/webAutomation/node_modules/puppeteer-core/lib/cjs/third_party/rxjs/rxjs.js:1055:13)
+    at Subscriber2.next (/home/gwin/projects/webAutomation/node_modules/puppeteer-core/lib/cjs/third_party/rxjs/rxjs.js:678:16)
+    at AsyncAction2.<anonymous> (/home/gwin/projects/webAutomation/node_modules/puppeteer-core/lib/cjs/third_party/rxjs/rxjs.js:4868:24)
+    at AsyncAction2._execute (/home/gwin/projects/webAutomation/node_modules/puppeteer-core/lib/cjs/third_party/rxjs/rxjs.js:1974:16)
+    at AsyncAction2.execute (/home/gwin/projects/webAutomation/node_modules/puppeteer-core/lib/cjs/third_party/rxjs/rxjs.js:1963:26)
+    at AsyncScheduler2.flush (/home/gwin/projects/webAutomation/node_modules/puppeteer-core/lib/cjs/third_party/rxjs/rxjs.js:2235:30)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7) {
+  [cause]: Error: Locator.waitHandle
+      at NodeLocator.waitHandle (/home/gwin/projects/webAutomation/node_modules/puppeteer-core/lib/cjs/puppeteer/api/locators/locators.js:440:23)
+      at NodeLocator.wait (/home/gwin/projects/webAutomation/node_modules/puppeteer-core/lib/cjs/puppeteer/api/locators/locators.js:453:70)
+      at checkFor (/home/gwin/projects/webAutomation/index.js:38:36)
+      at /home/gwin/projects/webAutomation/index.js:64:9
+}
