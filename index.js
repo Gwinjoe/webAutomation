@@ -61,14 +61,25 @@ const password = "Gwin@sportybet1";
 
   await getBalance()
 
-  await checkFor(".container .lobby-container")
+  await checkFor("#games-lobby-wrapper");
 
+  const enterGame = async () => {
+    try {
+      const frames = await page.frames();
+      const targetFrame = frames.find(frame => frame.url().includes('//www.sportybet.com/ng/sportygames/lobby'));
+      console.log(await targetFrame.url())
+      const element = await targetFrame.locator('div[data-id="35"]').waitHandle();
+      await element.click();
+      console.log("Game entered successfully")
+      await new Promise(resolve => setTimeout(resolve, 5000));
+    } catch (err) {
+      console.log("Entering Game Error: " + err)
+    }
+  }
 
-  await new Promise(resolve => setTimeout(resolve, 5000));
-  await page.mouse.click(727, 220);
-
+  await enterGame();
   async function isLoading() {
-    const isLoadingOn = await page.locator("#app-init-loader-wrap").style?.display === "none" ? true : false;
+    const isLoadingOn = await targetFrame.locator("#app-init-loader-wrap").style?.display === "none" ? true : false;
 
     if (!isLoadingOn) {
       console.log("Game still loading")
@@ -80,7 +91,31 @@ const password = "Gwin@sportybet1";
 
 
   // await isLoading();
+  const frames = await page.frames();
+  const targetFrame = frames.find(frame => frame.url().includes('//www.sportybet.com/ng/sportygames/'));
+  console.log(await targetFrame.url())
 
+  const checkIfModalAndClick = async () => {
+    try {
+      const modalOn = await targetFrame.locator("#__BVID__47___BV_modal_footer_ > button.btn.btn-primary").setTimeout(3000).waitHandle();
+      await modalOn.click();
+    } catch (err) {
+      console.log("No modal found")
+    }
+  }
+  await checkIfModalAndClick();
+
+
+  const checkAutoBet = async () => {
+    try {
+      const checkbox = await targetFrame.locator("#__BVID__534 > div > div > div:nth-child(1) > div > div.row.auto-menu.no-gutters > div:nth-child(1) > div > div.position-relative > label > input").waitHandle();
+      const isChecked = await checkbox.getProperty("checked").jsonValue();
+      console.log(await isChecked)
+    } catch (err) {
+      console.log("checkbox err: " + err)
+    }
+  }
+  await checkAutoBet();
   //
   // let count = await page.locator(".align-items-center .d-flex .justify-content-center .multiplier > span").waitHandle();
   //
